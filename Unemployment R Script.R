@@ -68,7 +68,6 @@ Sp.Desc(Trump.Rates)
 
 write.csv(Trump.Rates, file="Trump.Rates.csv", row.names=F)
 
-
 #GRAPHING DATA----
 colorscale <- scales::seq_gradient_pal("slateblue1", "navyblue", "Lab")(seq(0,1,length.out=2))
 Unemp.plot <- ggplot(data=Unemp, aes(x=Year, y=U3)) + 
@@ -86,3 +85,33 @@ Unemp.plot <- ggplot(data=Unemp, aes(x=Year, y=U3)) +
 Unemp.plot
 
 ggsave(Unemp.plot, filename="Unemp.plot.png", width = 8, height=7, dpi=500)
+
+
+#Follow-up
+#March 12 2017
+#Find the Phony
+
+Unemp.Phony <- read.xlsx("C:/Users/sbuja/Documents/Data on the Rocks/Unemployment/Unemployment data wPhony.xlsx", sheetName="Sheet1")
+Sp.Desc(Unemp.Phony)
+
+Unemp.Phony.A.plot <- ggplot(data=Unemp.Phony, aes(x=Year, y=U3)) + 
+  geom_line(size=2, colour="navyblue") + 
+  scale_x_continuous(limits=c(2001,2018), breaks=seq(2001,2017,4), expand = c(0,0)) +
+  scale_y_continuous("Unemployment Rate", limits=c(0,35), breaks=seq(5,50,5), expand = c(0,0)) +
+  ggtitle("Option A") + DoR.Theme()
+Unemp.Phony.A.plot
+
+Unemp.Phony.B.plot <- ggplot(data=Unemp.Phony, aes(x=Year, y=Tr.U3)) + 
+  geom_line(size=2, colour="#B01D03") + 
+  scale_x_continuous(limits=c(2001,2018), breaks=seq(2001,2017,4), expand = c(0,0)) +
+  scale_y_continuous("Unemployment Rate", limits=c(0,35), breaks=seq(5,50,5), expand = c(0,0)) +
+  ggtitle("Option B") + DoR.Theme()
+Unemp.Phony.B.plot
+
+multiplot(Unemp.Phony.A.plot, Unemp.Phony.B.plot, cols=2)
+
+outfile="Unemp.Phony.Plot.png"
+png(outfile, width=12, height=6.5, units="in", res=500)
+multiplot(Unemp.Phony.A.plot, Unemp.Phony.B.plot, cols=2)
+dev.off()
+
