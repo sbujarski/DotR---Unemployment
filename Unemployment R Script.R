@@ -66,6 +66,7 @@ Sp.Desc(Unemp)
 Trump.Rates <- data.frame(Year=rep(2017,5), TR=c(20, 24, 30, 32, 42))
 Sp.Desc(Trump.Rates)
 
+write.csv(Trump.Rates, file="Trump.Rates.csv", row.names=F)
 
 
 #GRAPHING DATA----
