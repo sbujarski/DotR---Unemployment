@@ -14,7 +14,7 @@ Sp.Desc <- function(data)
   print(t(stat.desc(data))[,-c(2,3,6,7,11,14)])
 }
 
-DoR.Theme <- function(axis.text.size=16, axis.title.size=16, title.size=20, legend.position="none")
+DotR.Theme <- function(axis.text.size=16, axis.title.size=16, title.size=20, legend.position="none")
 {
   theme(panel.grid.major = element_line(colour="grey90"), panel.grid.minor = element_blank(), panel.background = element_blank(),
         axis.line.x=element_line(colour="black"), axis.line.y=element_line(colour="black"),
@@ -81,7 +81,7 @@ Unemp.plot <- ggplot(data=Unemp, aes(x=Year, y=U3)) +
   annotate("text", x=2016.2, y=35, label="Trump's\nClaimed\nRange", size=6, fontface="bold", hjust=1, vjust=0.5, colour="#B01D03")+
   scale_x_continuous(limits=c(2001,2018), breaks=seq(2001,2017,2), expand = c(0,0)) +
   scale_y_continuous("Unemployment Rate", limits=c(0,50), breaks=seq(5,50,5), expand = c(0,0)) +
-  ggtitle("Unemployment in America") + DoR.Theme()
+  ggtitle("Unemployment in America") + DotR.Theme()
 Unemp.plot
 
 ggsave(Unemp.plot, filename="Unemp.plot.png", width = 8, height=7, dpi=500)
